@@ -1,0 +1,23 @@
+{
+  "name": "ogr_transform",
+  "version": "0.0.0",
+  "description": "This will transform a file into a geojson file",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bradgnar/ogr_transform.git"
+  },
+  "keywords": [
+    "ogr2ogr",
+    "geojson"
+  ],
+  "author": "Bradgnar <bradgnar@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bradgnar/ogr_transform/issues"
+  },
+  "homepage": "https://github.com/bradgnar/ogr_transform"
+}
