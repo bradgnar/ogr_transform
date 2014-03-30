@@ -8,7 +8,18 @@ function walk(path){
 
 	if(stats.isFile()){
 		if(isCorrectFileType(path)){
+
 			console.log('reading the file ' + path);
+
+			var ogr = ogr2ogr(path)
+						.skipfailures()
+						.stream();
+			ogr.on('error', console.error);
+			ogr.pipe(process.stdout);
+			ogr.on('end',function(){
+
+			});
+			//ogr.pipe(fs.createWriteStream(geoJsonPath(path)));
 		}
 	}else if(stats.isDirectory()){
 		fs.readdir(path, function(err, newPaths){
@@ -40,4 +51,14 @@ function isCorrectFileType(path){
 	    return false;
 }
 
-walk('/home/bradgnar/ENC_ROOT');
+function geoJsonPath(path){
+	var pathArray = path.split('/'),
+		file = pathArray[pathArray.length-1],
+		nameArray = file.split('.'),
+      	postfix = nameArray[nameArray.length - 1],
+      	newPath = nameArray[0] + postfix + '.json';
+console.log(newPath);
+      return newPath;
+}
+
+walk('/home/bradgnar/ENC_ROOT/US5NC18M');
