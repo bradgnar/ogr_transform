@@ -20,7 +20,7 @@ function walk(path){
 			//console.log(path);
 			pathObj = makePaths(path);
 
-			execString = 'ogr2ogr -skipfailures -f "GeoJSON" ' + pathObj.newFile + ' ' + pathObj.fileName;
+			execString = 'ogr2ogr -skipfailures -f "xml" ' + pathObj.newFile + ' ' + pathObj.fileName;
 			child = exec(execString, {cwd: pathObj.basePath}, function(error, stdout, stderr){
 				if(error){
 					console.log(error.message);
@@ -79,7 +79,7 @@ function makePaths(path){
 	returnable.basePath = path.substring(0, path.lastIndexOf('/'));
 	returnable.fileName = path.substring(path.lastIndexOf('/')+1);
 	f = returnable.fileName
-	returnable.newFile = f.substring(0, f.lastIndexOf('.')).concat(f.substring(f.lastIndexOf('.')+1), '.json');
+	returnable.newFile = f.substring(0, f.lastIndexOf('.')).concat(f.substring(f.lastIndexOf('.')+1), '.xml');
 
 	return returnable;
 }
