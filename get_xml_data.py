@@ -1,6 +1,6 @@
 from lxml import etree
 from io import StringIO, BytesIO
-
+import pymongo
 
 #this stuff should just set up the basic variables for gunning through the xml
 os.chdir("home/bradgnar/ENC_ROOT/US5NC18M/noms")
@@ -17,6 +17,26 @@ print(root.tag)
 #2) get ExtendedData sibling which is Point
 #3) get Point child which is coordinates 
 #When I check the schemaURL attribute I also need to store the 
-for element in root.iter('SchemaData'):
-	extended = element.getparent()
-	print("%s ---- %s" % (extended.tag, extended.text))
+
+sfkml = '{http://www.opengis.net/kml/2.2}'
+
+for element in root.iter(sfkml + 'SchemaData'):
+	schemaUrl = element.get('schemaUrl')
+	if schemaUrl == '#BOYLAT'
+		extended = element.getparent()
+
+
+
+##This will search through the xml and take out the different stuff
+for element in root.iter(sfkml + 'SchemaData'):
+    schemaUrl = element.get('schemaUrl')
+    if schemaUrl in ('#BOYLAT', '#BOYSPP'):
+            placemark = element.getparent().getparent()
+            print(placemark.tag + ' -----------')
+            point = placemark.find(sfkml + 'Point')
+            print(point.tag + '###########')
+            coord = point.find(sfkml + 'coordinates')
+            print(coord.text)
+   
+
+
